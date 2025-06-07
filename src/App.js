@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Login from './login';
+import Main from './main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login/>}></Route>
+          <Route path="/" element={<Main/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
