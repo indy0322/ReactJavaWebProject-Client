@@ -1,11 +1,11 @@
 import { useState, useContext } from "react"
-import { Form, Button, InputGroup, Card, Modal, Navbar, Container, Nav } from "react-bootstrap"
+import { Form, Button, InputGroup, Card, Modal, Navbar, Container, Nav, Alert} from "react-bootstrap"
 import axios from "axios"
 
 
 function Register() {
 
-    const [RegisterId, setRegisterId] = useState('')
+    /*const [RegisterId, setRegisterId] = useState('')
     const [RegisterPassword, setRegisterPassword] = useState('')
 
     
@@ -21,7 +21,7 @@ function Register() {
     const onClickRegister = () => {
         console.log("ID: ",RegisterId)
         console.log("PW: ",RegisterPassword)
-        axios.post("http://localhost:8080/api/register",{
+        axios.post("/api/register",{
             userId:RegisterId,
             userPasswd:RegisterPassword
         })
@@ -37,60 +37,66 @@ function Register() {
                 alert(res.data + " 님 회원가입이 완료되었습니다.")
             }
         })
-    }
+    }*/
+    const [RegisterId, setRegisterId] = useState('')
+    const [RegisterPassword, setRegisterPassword] = useState('')
+    const [message, setMessage] = useState("");
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post("/api/register", {
+                userId:RegisterId,
+                userPasswd:RegisterPassword
+            });
+            setMessage(`서버 응답: ${response.data}`);
+        } catch (error) {
+            console.error(error);
+            setMessage("회원가입 실패");
+        }
+    };
 
     return (
         <div>
-            <Navbar bg="dark" data-bs-theme="dark">
-                <Container>
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Nav>
-                
-                
-                
-                
-                
-                </Container>
-                
-            </Navbar>
+            <Container className="d-flex justify-content-center align-items-center vh-100">
+                <Card style={{ width: "100%", maxWidth: "400px" }} className="shadow">
+                    <Card.Body>
+                    <h3 className="mb-4 text-center">회원가입</h3>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="RegisterId">
+                        <Form.Label>아이디</Form.Label>
+                        <Form.Control
+                            type="text"
+                            onChange={(e) => setRegisterId(e.target.value)}
+                            required
+                        />
+                        </Form.Group>
 
-            <div className="d-flex justify-content-center align-items-center vh-100 signup"> 
-                <InputGroup className="mb-3">
-                    <InputGroup.Text id="inputGroup-sizing-default" className="bg-dark text-white">
-                    ID
-                    </InputGroup.Text>
-                    <Form.Control
-                    className="bg-dark text-white"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    onChange={onChangeRegisterId}
-                    />
-                </InputGroup>
+                        <Form.Group className="mb-3" controlId="RegisterPassword">
+                        <Form.Label>비밀번호</Form.Label>
+                        <Form.Control
+                            type="password"
+                            onChange={(e) => setRegisterPassword(e.target.value)}
+                            required
+                        />
+                        </Form.Group>
 
-                <InputGroup className="mb-3">
-                    <InputGroup.Text id="inputGroup-sizing-default" className="bg-dark text-white">
-                    Password
-                    </InputGroup.Text>
-                    <Form.Control
-                    className="bg-dark text-white"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    onChange={onChangeRegisterPassword}
-                    />
-                </InputGroup>
-                
+                        <div className="d-grid">
+                        <Button variant="primary" type="submit">
+                            회원가입
+                        </Button>
+                        </div>
+                    </Form>
 
-                <Button variant="primary" size="lg" className="py-2 px-4" onClick={onClickRegister}>Sign in</Button>
-                
-            </div>
-            
-
-            
+                    {message && (
+                        <Alert variant="info" className="mt-3">
+                        {message}
+                        </Alert>
+                    )}
+                    </Card.Body>
+                </Card>
+            </Container>
             
         </div>
     );

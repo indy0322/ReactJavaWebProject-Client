@@ -18,7 +18,7 @@ function Test() {
     const onClickRegister = () => {
         console.log("ID: ",RegisterId)
         console.log("PW: ",RegisterPassword)
-        axios.post("http://localhost:8080/api/test",{
+        axios.post("/api/test",{
             userId:RegisterId,
             userPasswd:RegisterPassword
         })
