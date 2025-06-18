@@ -5,39 +5,6 @@ import axios from "axios"
 
 function Register() {
 
-    /*const [RegisterId, setRegisterId] = useState('')
-    const [RegisterPassword, setRegisterPassword] = useState('')
-
-    
-
-    const onChangeRegisterId = (e) => {
-        setRegisterId(e.target.value)
-    }
-
-    const onChangeRegisterPassword = (e) => {
-        setRegisterPassword(e.target.value)
-    }
-
-    const onClickRegister = () => {
-        console.log("ID: ",RegisterId)
-        console.log("PW: ",RegisterPassword)
-        axios.post("/api/register",{
-            userId:RegisterId,
-            userPasswd:RegisterPassword
-        })
-        .then((res)=>{
-            console.log(res.data)
-            if(res.data == "존재하는 아이디 입니다"){
-                alert("존재하는 아이디 입니다")
-            }
-            else if(res.data == "아이디, 비밀번호를 제대로 입력해주세요"){
-                alert("아이디, 비밀번호를 제대로 입력해주세요")
-            }
-            else{
-                alert(res.data + " 님 회원가입이 완료되었습니다.")
-            }
-        })
-    }*/
     const [RegisterId, setRegisterId] = useState('')
     const [RegisterPassword, setRegisterPassword] = useState('')
     const [message, setMessage] = useState("");
