@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Main from './main';
-import Register from './register';
-import Test from './test';
+import Login from './pages/login';
+import Register from './pages/register';
+import Test from './pages/test';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main/>}></Route>
+          <Route path="/" element={<Login/>}></Route>
           <Route path="/test" element={<Test/>}></Route>
           <Route path="/register" element={<Register/>}></Route>
         </Routes>
