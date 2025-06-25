@@ -22,7 +22,13 @@ function Login() {
                     userId:userId,
                     userPasswd:password
                 });
-                console.log(response.data)
+                if(response.data == "존재하지 않는 아이디입니다." || response.data == "잘못된 비밀번호입니다."){
+                    setMessage(response.data);
+                }else{
+                    sessionStorage.setItem("userToken",response.data);
+                    setMessage("");
+                    alert("로그인 되었습니다.");
+                }
             }catch(error){
                 console.error(error);
                 setMessage("로그인에 실패하였습니다.");
